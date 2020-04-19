@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ShogiPoker />
+    <shogi-poker />
   </div>
 </template>
 
