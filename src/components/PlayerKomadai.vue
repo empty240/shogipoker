@@ -4,10 +4,14 @@
     <table class="pkomadai">
       <tbody>
         <tr>
-          <td id="pk1">歩</td><td id="pk3">香</td><td id="pk4">桂</td>
+          <td id="pk1">歩</td>
+          <td id="pk3">香</td>
+          <td id="pk4">桂</td>
         </tr>
         <tr>
-          <td id="pk6">銀</td><td id="pk7">金</td><td id="pk9">角</td>
+          <td id="pk6">銀</td>
+          <td id="pk7">金</td>
+          <td id="pk9">角</td>
         </tr>
       </tbody>
     </table>
@@ -16,27 +20,28 @@
 
 <script>
 export default {
-  name: 'PlayerKomadai',
-}
+  name: "PlayerKomadai",
+};
 </script>
 
 <style scoped>
-.pkomadai{
-		border:2px solid black;
-		border-collapse:collapse;
-		/* background-image:url("wood1.jpg"); */
+.pkomadai {
+  border: 2px solid black;
+  border-collapse: collapse;
+  background-image: url("../assets/mokume.jpeg");
+  background-repeat: repeat;
 }
 
-td{
+td {
   text-align: center;
-  font-size:28px;
-  font-weight:bold;
-  border-width:0px;
+  font-size: 28px;
+  font-weight: bold;
+  border-width: 0px;
   padding: 3px 6px;
-  opacity:0.5;
+  opacity: 0.5;
 }
 
-#player-point{
+#player-point {
   width: 50px;
   height: 50px;
   border: 2px black solid;
@@ -44,7 +49,7 @@ td{
   line-height: 50px;
   font-size: 25px;
   font-weight: bold;
-  background: #E7B87A;
+  background: #e7b87a;
   margin-bottom: 10px;
 }
 

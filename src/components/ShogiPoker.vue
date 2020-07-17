@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>将棋ポーカー</h1>
     <div id="wrapper">
       <div class="com-komadai">
         <com-komadai></com-komadai>
@@ -30,13 +31,22 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  margin: 0;
+  padding: 20px 0;
+  text-align: center;
+}
+
 #wrapper {
   display: flex;
   justify-content: center;
   margin-right: 124px;
 }
+
 .shogi-ban {
   margin: 0 15px;
+  background-image: url("../assets/mokume.jpeg");
+  background-repeat: repeat;
 }
 
 .player-komadai {
