@@ -1,32 +1,32 @@
 <template>
-  <div id="wrapper">
-    <div class="com-komadai">
-      <com-komadai></com-komadai>
-    </div>
-    <div class="shogi-ban">
-      <shogi-ban>
-      </shogi-ban>
-    </div>
-    <div class="player-komadai">
-      <player-komadai>
-      </player-komadai>
+  <div>
+    <div id="wrapper">
+      <div class="com-komadai">
+        <com-komadai></com-komadai>
+      </div>
+      <div class="shogi-ban">
+        <shogi-ban> </shogi-ban>
+      </div>
+      <div class="player-komadai">
+        <player-komadai> </player-komadai>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import ShogiBan from './ShogiBan.vue'
-import ComKomadai from './ComKomadai.vue'
-import PlayerKomadai from './PlayerKomadai.vue'
+import ShogiBan from "./ShogiBan.vue";
+import ComKomadai from "./ComKomadai.vue";
+import PlayerKomadai from "./PlayerKomadai.vue";
 
 export default {
-  name: 'ShogiPoker',
+  name: "ShogiPoker",
   components: {
     ShogiBan,
     ComKomadai,
-    PlayerKomadai
-  }
-}
+    PlayerKomadai,
+  },
+};
 </script>
 
 <style scoped>
@@ -39,7 +39,7 @@ export default {
   margin: 0 15px;
 }
 
-.player-komadai{
+.player-komadai {
   position: relative;
 }
 </style>
