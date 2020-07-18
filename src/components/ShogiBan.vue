@@ -121,6 +121,8 @@ export default {
       // 局面の更新
       if (this.$store.state.phase < 7) {
         this.$store.commit("upPhase");
+      } else {
+        this.showGameResult();
       }
     },
     match() {
@@ -138,8 +140,16 @@ export default {
         this.$store.commit("addComPoint", playerKomaPoint);
         this.stageResult = "LOSE";
       } else {
-        // 引き分けは、ポイント加算はなし
         this.stageResult = "DRAW";
+      }
+    },
+    showGameResult() {
+      if (this.$store.state.playerPoint > this.$store.state.comPoint) {
+        this.gameResult = "勝ち";
+      } else if (this.$store.state.playerPoint < this.$store.state.comPoint) {
+        this.gameResult = "負け";
+      } else {
+        this.gameResult = "引き分け";
       }
     },
   },
