@@ -134,10 +134,12 @@ export default {
       if (playerKomaPoint > comKomaPoint) {
         // playerの勝ちなので、comのコマポイントをplayerに加算
         this.$store.commit("addPlayerPoint", comKomaPoint);
+        this.$store.commit("addPlayerKoma", this.comBettingKoma);
         this.stageResult = "WIN";
       } else if (playerKomaPoint < comKomaPoint) {
         // comの勝ちなので、playerのコマポイントをcomに加算
         this.$store.commit("addComPoint", playerKomaPoint);
+        this.$store.commit("addComKoma", this.playerBettingKoma);
         this.stageResult = "LOSE";
       } else {
         this.stageResult = "DRAW";

@@ -3,14 +3,14 @@
     <table class="ckomadai">
       <tbody>
         <tr>
-          <td id="ck9">角</td>
-          <td id="ck7">金</td>
-          <td id="ck6">銀</td>
+          <td id="ck9">{{ showKomaLabel("kaku") }}</td>
+          <td id="ck7">{{ showKomaLabel("kin") }}</td>
+          <td id="ck6">{{ showKomaLabel("gin") }}</td>
         </tr>
         <tr>
-          <td id="ck4">桂</td>
-          <td id="ck3">香</td>
-          <td id="ck1">歩</td>
+          <td id="ck4">{{ showKomaLabel("keima") }}</td>
+          <td id="ck3">{{ showKomaLabel("kyosha") }}</td>
+          <td id="ck1">{{ showKomaLabel("fu") }}</td>
         </tr>
       </tbody>
     </table>
@@ -21,6 +21,15 @@
 <script>
 export default {
   name: "ComKomadai",
+  methods: {
+    showKomaLabel(komaIndex) {
+      if (this.$store.state.comKomadai.includes(komaIndex)) {
+        return this.$store.state.komaList[komaIndex].label;
+      } else {
+        return "";
+      }
+    },
+  },
 };
 </script>
 
@@ -39,13 +48,13 @@ export default {
 #ck7,
 #ck9 {
   text-align: center;
-  padding: 3px 6px;
   border-width: 0px;
   font-size: 28px;
   font-weight: bold;
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
-  opacity: 0.5;
+  width: 42px;
+  height: 48px;
 }
 
 #com-point {

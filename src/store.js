@@ -46,6 +46,12 @@ const store = new Vuex.Store({
     addComPoint(state, point) {
       state.comPoint += point;
     },
+    addPlayerKoma(state, komaIndex) {
+      state.playerKomadai.push(komaIndex);
+    },
+    addComKoma(state, komaIndex) {
+      state.comKomadai.push(komaIndex);
+    },
   },
 });
 export default store;
