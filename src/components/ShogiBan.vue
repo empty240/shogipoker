@@ -29,7 +29,13 @@
         </tr>
         <tr>
           <td v-for="n in 3" :key="n"></td>
-          <td id="player-bet"></td>
+          <td id="player-bet">
+            {{
+              playerBettingKoma
+                ? this.$store.state.komaList[playerBettingKoma].label
+                : ""
+            }}
+          </td>
           <td v-for="n in 3" :key="n + 'a'"></td>
         </tr>
         <tr>
@@ -41,6 +47,7 @@
             :key="index"
             :id="'p' + koma.point"
             class="p-koma"
+            @click="bet(index)"
           >
             <span :class="playerSelectable(index)">{{ koma.label }}</span>
           </td>
@@ -54,6 +61,11 @@
 // import { mapState } from "vuex";
 export default {
   name: "ShogiBan",
+  data() {
+    return {
+      playerBettingKoma: null,
+    };
+  },
   methods: {
     comSelectable(index) {
       if (!this.$store.state.comHolding.includes(index)) {
@@ -64,6 +76,9 @@ export default {
       if (!this.$store.state.playerHolding.includes(index)) {
         return "non-active";
       }
+    },
+    bet(index) {
+      this.playerBettingKoma = index;
     },
   },
 };
@@ -105,17 +120,18 @@ td {
   text-align: center;
   -ms-transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
-  line-height: 70px;
-  font-size: 40px;
+  width: 60px;
+  height: 60px;
+  font-size: 35px;
   font-weight: bold;
   background: #e7b87a;
 }
 
 #player-bet {
   text-align: center;
-
-  line-height: 70px;
-  font-size: 40px;
+  width: 60px;
+  height: 60px;
+  font-size: 35px;
   font-weight: bold;
   background: #e7b87a;
 }
