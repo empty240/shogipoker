@@ -3,67 +3,47 @@
     <table>
       <tbody>
         <tr class="com-koma">
-          <td id="com1" class="c-koma">歩</td>
-          <td id="com3" class="c-koma">香</td>
-          <td id="com4" class="c-koma">桂</td>
-          <td id="com6" class="c-koma">銀</td>
-          <td id="com7" class="c-koma">金</td>
-          <td id="com9" class="c-koma">角</td>
-          <td id="com10" class="c-koma">飛</td>
+          <td
+            v-for="koma in this.$store.state.komaList"
+            :key="koma.point"
+            :id="'com' + koma.point"
+            class="c-koma"
+          >
+            {{ koma.label }}
+          </td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 7" :key="n"></td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 3" :key="n"></td>
           <td id="com-bet" class="com-koma"></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 3" :key="n"></td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 3" :key="n"></td>
           <td id="field"></td>
           <td></td>
           <td id="go">初手</td>
           <td></td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 3" :key="n"></td>
           <td id="player-bet"></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 3" :key="n"></td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 7" :key="n"></td>
         </tr>
         <tr>
-          <td id="p1" class="p-koma">歩</td>
-          <td id="p3" class="p-koma">香</td>
-          <td id="p4" class="p-koma">桂</td>
-          <td id="p6" class="p-koma">銀</td>
-          <td id="p7" class="p-koma">金</td>
-          <td id="p9" class="p-koma">角</td>
-          <td id="p10" class="p-koma">飛</td>
+          <td
+            v-for="koma in this.$store.state.komaList"
+            :key="koma.point"
+            :id="'p' + koma.point"
+            class="p-koma"
+          >
+            {{ koma.label }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -71,6 +51,7 @@
 </template>
 
 <script>
+// import { mapState } from "vuex";
 export default {
   name: "ShogiBan",
 };
