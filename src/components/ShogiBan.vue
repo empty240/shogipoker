@@ -18,7 +18,13 @@
         </tr>
         <tr>
           <td v-for="n in 3" :key="n"></td>
-          <td id="com-bet" class="com-koma"></td>
+          <td id="com-bet" class="com-koma">
+            {{
+              comBettingKoma
+                ? this.$store.state.komaList[comBettingKoma].label
+                : ""
+            }}
+          </td>
           <td v-for="n in 3" :key="n + 'a'"></td>
         </tr>
         <tr>
@@ -85,6 +91,7 @@ export default {
     bet(index) {
       if (this.$store.state.playerHolding.includes(index)) {
         this.playerBettingKoma = index;
+        this.comBettingKoma = null;
       }
     },
     battle() {
@@ -93,15 +100,18 @@ export default {
         return;
       }
 
+      // comのbetをランダムに決める
       let size = this.$store.state.comHolding.length;
       this.comBettingKoma = this.$store.state.comHolding[
         Math.floor(Math.random() * size)
       ];
 
+      // 使用可能な駒の更新
       this.$store.commit("playerBet", this.playerBettingKoma);
       this.$store.commit("comBet", this.comBettingKoma);
+
+      // 局面の更新
       this.$store.commit("upPhase");
-      this.playerBettingKoma = null;
     },
   },
 };
