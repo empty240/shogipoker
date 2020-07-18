@@ -4,12 +4,12 @@
       <tbody>
         <tr class="com-koma">
           <td
-            v-for="koma in this.$store.state.komaList"
-            :key="koma.point"
+            v-for="(koma, index) in this.$store.state.komaList"
+            :key="index"
             :id="'com' + koma.point"
             class="c-koma"
           >
-            {{ koma.label }}
+            <span :class="comSelectable(index)">{{ koma.label }}</span>
           </td>
         </tr>
         <tr>
@@ -18,7 +18,7 @@
         <tr>
           <td v-for="n in 3" :key="n"></td>
           <td id="com-bet" class="com-koma"></td>
-          <td v-for="n in 3" :key="n"></td>
+          <td v-for="n in 3" :key="n + 'a'"></td>
         </tr>
         <tr>
           <td v-for="n in 3" :key="n"></td>
@@ -30,19 +30,19 @@
         <tr>
           <td v-for="n in 3" :key="n"></td>
           <td id="player-bet"></td>
-          <td v-for="n in 3" :key="n"></td>
+          <td v-for="n in 3" :key="n + 'a'"></td>
         </tr>
         <tr>
           <td v-for="n in 7" :key="n"></td>
         </tr>
         <tr>
           <td
-            v-for="koma in this.$store.state.komaList"
-            :key="koma.point"
+            v-for="(koma, index) in this.$store.state.komaList"
+            :key="index"
             :id="'p' + koma.point"
             class="p-koma"
           >
-            {{ koma.label }}
+            <span :class="playerSelectable(index)">{{ koma.label }}</span>
           </td>
         </tr>
       </tbody>
@@ -54,6 +54,18 @@
 // import { mapState } from "vuex";
 export default {
   name: "ShogiBan",
+  methods: {
+    comSelectable(index) {
+      if (!this.$store.state.comHolding.includes(index)) {
+        return "non-active";
+      }
+    },
+    playerSelectable(index) {
+      if (!this.$store.state.playerHolding.includes(index)) {
+        return "non-active";
+      }
+    },
+  },
 };
 </script>
 
