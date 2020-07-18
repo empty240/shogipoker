@@ -1,17 +1,17 @@
 <template>
   <div class="aa">
-    <div id="player-point">0</div>
+    <div id="player-point">{{ this.$store.state.playerPoint }}</div>
     <table class="pkomadai">
       <tbody>
         <tr>
-          <td id="pk1">歩</td>
-          <td id="pk3">香</td>
-          <td id="pk4">桂</td>
+          <td id="pk1">{{ showKomaLabel("fu") }}</td>
+          <td id="pk3">{{ showKomaLabel("kyosha") }}</td>
+          <td id="pk4">{{ showKomaLabel("keima") }}</td>
         </tr>
         <tr>
-          <td id="pk6">銀</td>
-          <td id="pk7">金</td>
-          <td id="pk9">角</td>
+          <td id="pk6">{{ showKomaLabel("gin") }}</td>
+          <td id="pk7">{{ showKomaLabel("kin") }}</td>
+          <td id="pk9">{{ showKomaLabel("kaku") }}</td>
         </tr>
       </tbody>
     </table>
@@ -21,6 +21,15 @@
 <script>
 export default {
   name: "PlayerKomadai",
+  methods: {
+    showKomaLabel(komaIndex) {
+      if (this.$store.state.playerKomadai.includes(komaIndex)) {
+        return this.$store.state.komaList[komaIndex].label;
+      } else {
+        return "";
+      }
+    },
+  },
 };
 </script>
 
@@ -32,13 +41,13 @@ export default {
   background-repeat: repeat;
 }
 
-td {
+.pkomadai td {
   text-align: center;
   font-size: 28px;
   font-weight: bold;
   border-width: 0px;
-  padding: 3px 6px;
-  opacity: 0.5;
+  width: 42px;
+  height: 48px;
 }
 
 #player-point {
@@ -54,7 +63,7 @@ td {
 }
 
 .aa {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute; */
+  /* bottom: 0; */
 }
 </style>

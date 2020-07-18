@@ -15,7 +15,7 @@ const store = new Vuex.Store({
       kaku: { point: 9, label: "角" },
       hisha: { point: 10, label: "飛" },
     },
-    playerPont: 0,
+    playerPoint: 0,
     comPoint: 0,
     playerKomadai: [],
     comKomadai: [],
@@ -39,6 +39,18 @@ const store = new Vuex.Store({
     },
     upPhase(state) {
       state.phase++;
+    },
+    addPlayerPoint(state, point) {
+      state.playerPoint += point;
+    },
+    addComPoint(state, point) {
+      state.comPoint += point;
+    },
+    addPlayerKoma(state, komaIndex) {
+      state.playerKomadai.push(komaIndex);
+    },
+    addComKoma(state, komaIndex) {
+      state.comKomadai.push(komaIndex);
     },
   },
 });
