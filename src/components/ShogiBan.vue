@@ -24,7 +24,7 @@
           <td v-for="n in 3" :key="n"></td>
           <td id="field"></td>
           <td></td>
-          <td id="go">初手</td>
+          <td id="battle">{{ stage }}</td>
           <td></td>
         </tr>
         <tr>
@@ -64,6 +64,10 @@ export default {
   data() {
     return {
       playerBettingKoma: null,
+      stage:
+        this.$store.state.phase === 1
+          ? "初手"
+          : this.$store.state.phase + "手目",
     };
   },
   methods: {
@@ -106,13 +110,13 @@ td {
   font-weight: bold;
 }
 
-#go {
+#battle {
   font-size: 18px;
   background: #e7b87a;
   pointer-events: none;
   cursor: pointer;
 }
-#go:hover {
+#battle:hover {
   opacity: 0.7;
 }
 
