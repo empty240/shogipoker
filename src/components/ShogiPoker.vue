@@ -6,10 +6,10 @@
         <com-komadai></com-komadai>
       </div>
       <div class="shogi-ban">
-        <shogi-ban> </shogi-ban>
+        <shogi-ban></shogi-ban>
       </div>
       <div class="player-komadai">
-        <player-komadai> </player-komadai>
+        <player-komadai></player-komadai>
         <game-rule></game-rule>
       </div>
     </div>

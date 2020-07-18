@@ -18,13 +18,15 @@ export default {
 
 <style scoped>
 .rule {
-  margin: 0 0 50px 0;
+  margin: 0 0 5px 0;
 }
 h2 {
+  margin: 0;
   text-align: center;
 }
 li {
   margin: 5px 0;
   font-weight: 500;
+  font-size: 17px;
 }
 </style>

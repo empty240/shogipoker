@@ -3,6 +3,8 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const komaIndexList = ["fu", "kyosha", "keima", "gin", "kin", "kaku", "hisha"];
+
 // Storeを生成
 const store = new Vuex.Store({
   state: {
@@ -19,8 +21,8 @@ const store = new Vuex.Store({
     comPoint: 0,
     playerKomadai: [],
     comKomadai: [],
-    playerHolding: ["fu", "kyosha", "keima", "gin", "kin", "kaku", "hisha"],
-    comHolding: ["fu", "kyosha", "keima", "gin", "kin", "kaku", "hisha"],
+    playerHolding: Object.assign([], komaIndexList),
+    comHolding: Object.assign([], komaIndexList),
     phase: 1,
   },
   getters: {
@@ -51,6 +53,15 @@ const store = new Vuex.Store({
     },
     addComKoma(state, komaIndex) {
       state.comKomadai.push(komaIndex);
+    },
+    reset(state) {
+      state.playerPoint = 0;
+      state.comPoint = 0;
+      state.playerKomadai = [];
+      state.comKomadai = [];
+      state.playerHolding = Object.assign([], komaIndexList);
+      state.comHolding = Object.assign([], komaIndexList);
+      state.phase = 1;
     },
   },
 });
