@@ -1,6 +1,6 @@
 <template>
   <div class="aa">
-    <div id="player-point">0</div>
+    <div id="player-point">{{ this.$store.state.playerPoint }}</div>
     <table class="pkomadai">
       <tbody>
         <tr>

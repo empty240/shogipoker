@@ -14,7 +14,7 @@
         </tr>
       </tbody>
     </table>
-    <div id="com-point">0</div>
+    <div id="com-point">{{ this.$store.state.comPoint }}</div>
   </div>
 </template>
 

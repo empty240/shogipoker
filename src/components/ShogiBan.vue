@@ -29,7 +29,10 @@
         </tr>
         <tr>
           <td v-for="n in 3" :key="n"></td>
-          <td id="field"></td>
+          <td id="field">
+            <span v-if="gameResult">{{ gameResult }}</span>
+            <span v-else>{{ stageResult }}</span>
+          </td>
           <td></td>
           <td @click="battle" id="battle">
             {{ this.$store.getters.stage }}
@@ -75,6 +78,8 @@ export default {
     return {
       playerBettingKoma: null,
       comBettingKoma: null,
+      gameResult: null,
+      stageResult: null,
     };
   },
   methods: {
@@ -106,12 +111,36 @@ export default {
         Math.floor(Math.random() * size)
       ];
 
+      // 対決
+      this.match();
+
       // 使用可能な駒の更新
       this.$store.commit("playerBet", this.playerBettingKoma);
       this.$store.commit("comBet", this.comBettingKoma);
 
       // 局面の更新
-      this.$store.commit("upPhase");
+      if (this.$store.state.phase < 7) {
+        this.$store.commit("upPhase");
+      }
+    },
+    match() {
+      const playerKomaPoint = this.$store.state.komaList[this.playerBettingKoma]
+        .point;
+      const comKomaPoint = this.$store.state.komaList[this.comBettingKoma]
+        .point;
+
+      if (playerKomaPoint > comKomaPoint) {
+        // playerの勝ちなので、comのコマポイントをplayerに加算
+        this.$store.commit("addPlayerPoint", comKomaPoint);
+        this.stageResult = "WIN";
+      } else if (playerKomaPoint < comKomaPoint) {
+        // comの勝ちなので、playerのコマポイントをcomに加算
+        this.$store.commit("addComPoint", playerKomaPoint);
+        this.stageResult = "LOSE";
+      } else {
+        // 引き分けは、ポイント加算はなし
+        this.stageResult = "DRAW";
+      }
     },
   },
 };
@@ -133,9 +162,7 @@ td {
 }
 #field {
   text-align: center;
-  line-height: 70px;
-
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
 }
 
