@@ -23,5 +23,15 @@ const store = new Vuex.Store({
     comHolding: ["fu", "kyosha", "keima", "gin", "kin", "kaku", "hisha"],
     phase: 1,
   },
+  mutations: {
+    playerBet(state, komaIndex) {
+      const index = state.playerHolding.indexOf(komaIndex);
+      state.playerHolding.splice(index, 1);
+    },
+    comBet(state, komaIndex) {
+      const index = state.comHolding.indexOf(komaIndex);
+      state.comHolding.splice(index, 1);
+    },
+  },
 });
 export default store;

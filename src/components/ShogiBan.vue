@@ -8,8 +8,9 @@
             :key="index"
             :id="'com' + koma.point"
             class="c-koma"
+            :class="comSelectable(index)"
           >
-            <span :class="comSelectable(index)">{{ koma.label }}</span>
+            {{ koma.label }}
           </td>
         </tr>
         <tr>
@@ -24,7 +25,7 @@
           <td v-for="n in 3" :key="n"></td>
           <td id="field"></td>
           <td></td>
-          <td id="battle">{{ stage }}</td>
+          <td @click="battle" id="battle">{{ stage }}</td>
           <td></td>
         </tr>
         <tr>
@@ -47,9 +48,10 @@
             :key="index"
             :id="'p' + koma.point"
             class="p-koma"
+            :class="playerSelectable(index)"
             @click="bet(index)"
           >
-            <span :class="playerSelectable(index)">{{ koma.label }}</span>
+            {{ koma.label }}
           </td>
         </tr>
       </tbody>
@@ -64,6 +66,7 @@ export default {
   data() {
     return {
       playerBettingKoma: null,
+      comBettingKoma: null,
       stage:
         this.$store.state.phase === 1
           ? "初手"
@@ -73,16 +76,33 @@ export default {
   methods: {
     comSelectable(index) {
       if (!this.$store.state.comHolding.includes(index)) {
-        return "non-active";
+        return "nonActive";
       }
     },
     playerSelectable(index) {
       if (!this.$store.state.playerHolding.includes(index)) {
-        return "non-active";
+        return "nonActive";
       }
     },
     bet(index) {
-      this.playerBettingKoma = index;
+      if (this.$store.state.playerHolding.includes(index)) {
+        this.playerBettingKoma = index;
+      }
+    },
+    battle() {
+      // 異常系は弾く。早期リターン
+      if (!this.playerBettingKoma) {
+        return;
+      }
+
+      let size = this.$store.state.comHolding.length;
+      this.comBettingKoma = this.$store.state.comHolding[
+        Math.floor(Math.random() * size)
+      ];
+
+      this.$store.commit("playerBet", this.playerBettingKoma);
+      this.$store.commit("comBet", this.comBettingKoma);
+      this.playerBettingKoma = null;
     },
   },
 };
@@ -113,7 +133,6 @@ td {
 #battle {
   font-size: 18px;
   background: #e7b87a;
-  pointer-events: none;
   cursor: pointer;
 }
 #battle:hover {
@@ -148,6 +167,10 @@ td {
 }
 
 .p-koma:hover {
-  opacity: 0.5;
+  opacity: 0.4;
+}
+
+.nonActive {
+  opacity: 0.4;
 }
 </style>
