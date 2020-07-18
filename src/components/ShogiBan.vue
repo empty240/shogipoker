@@ -25,7 +25,9 @@
           <td v-for="n in 3" :key="n"></td>
           <td id="field"></td>
           <td></td>
-          <td @click="battle" id="battle">{{ stage }}</td>
+          <td @click="battle" id="battle">
+            {{ this.$store.getters.stage }}
+          </td>
           <td></td>
         </tr>
         <tr>
@@ -67,10 +69,6 @@ export default {
     return {
       playerBettingKoma: null,
       comBettingKoma: null,
-      stage:
-        this.$store.state.phase === 1
-          ? "初手"
-          : this.$store.state.phase + "手目",
     };
   },
   methods: {
@@ -102,6 +100,7 @@ export default {
 
       this.$store.commit("playerBet", this.playerBettingKoma);
       this.$store.commit("comBet", this.comBettingKoma);
+      this.$store.commit("upPhase");
       this.playerBettingKoma = null;
     },
   },

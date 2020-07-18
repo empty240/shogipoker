@@ -23,6 +23,11 @@ const store = new Vuex.Store({
     comHolding: ["fu", "kyosha", "keima", "gin", "kin", "kaku", "hisha"],
     phase: 1,
   },
+  getters: {
+    stage(state) {
+      return state.phase === 1 ? "初手" : state.phase + "手目";
+    },
+  },
   mutations: {
     playerBet(state, komaIndex) {
       const index = state.playerHolding.indexOf(komaIndex);
@@ -31,6 +36,9 @@ const store = new Vuex.Store({
     comBet(state, komaIndex) {
       const index = state.comHolding.indexOf(komaIndex);
       state.comHolding.splice(index, 1);
+    },
+    upPhase(state) {
+      state.phase++;
     },
   },
 });
