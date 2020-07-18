@@ -3,67 +3,58 @@
     <table>
       <tbody>
         <tr class="com-koma">
-          <td id="com1" class="c-koma">歩</td>
-          <td id="com3" class="c-koma">香</td>
-          <td id="com4" class="c-koma">桂</td>
-          <td id="com6" class="c-koma">銀</td>
-          <td id="com7" class="c-koma">金</td>
-          <td id="com9" class="c-koma">角</td>
-          <td id="com10" class="c-koma">飛</td>
+          <td
+            v-for="(koma, index) in this.$store.state.komaList"
+            :key="index"
+            :id="'com' + koma.point"
+            class="c-koma"
+            :class="comSelectable(index)"
+          >
+            {{ koma.label }}
+          </td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 7" :key="n"></td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 3" :key="n"></td>
           <td id="com-bet" class="com-koma"></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 3" :key="n + 'a'"></td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 3" :key="n"></td>
           <td id="field"></td>
           <td></td>
-          <td id="go">初手</td>
+          <td @click="battle" id="battle">
+            {{ this.$store.getters.stage }}
+          </td>
           <td></td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td id="player-bet"></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 3" :key="n"></td>
+          <td id="player-bet">
+            {{
+              playerBettingKoma
+                ? this.$store.state.komaList[playerBettingKoma].label
+                : ""
+            }}
+          </td>
+          <td v-for="n in 3" :key="n + 'a'"></td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td v-for="n in 7" :key="n"></td>
         </tr>
         <tr>
-          <td id="p1" class="p-koma">歩</td>
-          <td id="p3" class="p-koma">香</td>
-          <td id="p4" class="p-koma">桂</td>
-          <td id="p6" class="p-koma">銀</td>
-          <td id="p7" class="p-koma">金</td>
-          <td id="p9" class="p-koma">角</td>
-          <td id="p10" class="p-koma">飛</td>
+          <td
+            v-for="(koma, index) in this.$store.state.komaList"
+            :key="index"
+            :id="'p' + koma.point"
+            class="p-koma"
+            :class="playerSelectable(index)"
+            @click="bet(index)"
+          >
+            {{ koma.label }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -71,8 +62,48 @@
 </template>
 
 <script>
+// import { mapState } from "vuex";
 export default {
   name: "ShogiBan",
+  data() {
+    return {
+      playerBettingKoma: null,
+      comBettingKoma: null,
+    };
+  },
+  methods: {
+    comSelectable(index) {
+      if (!this.$store.state.comHolding.includes(index)) {
+        return "nonActive";
+      }
+    },
+    playerSelectable(index) {
+      if (!this.$store.state.playerHolding.includes(index)) {
+        return "nonActive";
+      }
+    },
+    bet(index) {
+      if (this.$store.state.playerHolding.includes(index)) {
+        this.playerBettingKoma = index;
+      }
+    },
+    battle() {
+      // 異常系は弾く。早期リターン
+      if (!this.playerBettingKoma) {
+        return;
+      }
+
+      let size = this.$store.state.comHolding.length;
+      this.comBettingKoma = this.$store.state.comHolding[
+        Math.floor(Math.random() * size)
+      ];
+
+      this.$store.commit("playerBet", this.playerBettingKoma);
+      this.$store.commit("comBet", this.comBettingKoma);
+      this.$store.commit("upPhase");
+      this.playerBettingKoma = null;
+    },
+  },
 };
 </script>
 
@@ -98,13 +129,12 @@ td {
   font-weight: bold;
 }
 
-#go {
+#battle {
   font-size: 18px;
   background: #e7b87a;
-  pointer-events: none;
   cursor: pointer;
 }
-#go:hover {
+#battle:hover {
   opacity: 0.7;
 }
 
@@ -112,17 +142,18 @@ td {
   text-align: center;
   -ms-transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
-  line-height: 70px;
-  font-size: 40px;
+  width: 60px;
+  height: 60px;
+  font-size: 35px;
   font-weight: bold;
   background: #e7b87a;
 }
 
 #player-bet {
   text-align: center;
-
-  line-height: 70px;
-  font-size: 40px;
+  width: 60px;
+  height: 60px;
+  font-size: 35px;
   font-weight: bold;
   background: #e7b87a;
 }
@@ -135,6 +166,10 @@ td {
 }
 
 .p-koma:hover {
-  opacity: 0.5;
+  opacity: 0.4;
+}
+
+.nonActive {
+  opacity: 0.4;
 }
 </style>
