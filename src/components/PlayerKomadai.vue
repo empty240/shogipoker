@@ -1,5 +1,5 @@
 <template>
-  <div class="aa">
+  <div>
     <div id="player-point">{{ this.$store.state.playerPoint }}</div>
     <table class="pkomadai">
       <tbody>
@@ -56,14 +56,9 @@ export default {
   border: 2px black solid;
   text-align: center;
   line-height: 50px;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
   background: #e7b87a;
   margin-bottom: 10px;
-}
-
-.aa {
-  /* position: absolute; */
-  /* bottom: 0; */
 }
 </style>

@@ -10,6 +10,7 @@
       </div>
       <div class="player-komadai">
         <player-komadai> </player-komadai>
+        <game-rule></game-rule>
       </div>
     </div>
   </div>
@@ -19,6 +20,7 @@
 import ShogiBan from "./ShogiBan.vue";
 import ComKomadai from "./ComKomadai.vue";
 import PlayerKomadai from "./PlayerKomadai.vue";
+import GameRule from "./GameRule.vue";
 
 export default {
   name: "ShogiPoker",
@@ -26,6 +28,7 @@ export default {
     ShogiBan,
     ComKomadai,
     PlayerKomadai,
+    GameRule,
   },
 };
 </script>
@@ -40,7 +43,6 @@ h1 {
 #wrapper {
   display: flex;
   justify-content: center;
-  margin-right: 124px;
 }
 
 .shogi-ban {
@@ -50,6 +52,7 @@ h1 {
 }
 
 .player-komadai {
-  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
 }
 </style>

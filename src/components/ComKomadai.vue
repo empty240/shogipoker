@@ -63,7 +63,7 @@ export default {
   border: 2px black solid;
   text-align: center;
   line-height: 50px;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
   background: #e7b87a;
   float: right;
