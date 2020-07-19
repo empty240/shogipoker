@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>将棋ポーカー</h1>
-    <div id="wrapper">
+    <div class="wrapper">
       <div class="com-komadai">
         <com-komadai></com-komadai>
       </div>
@@ -23,7 +23,7 @@
               <td></td>
               <td></td>
               <td></td>
-              <td id="com-bet">
+              <td class="com-bet">
                 {{
                   comBettingKoma
                     ? this.$store.state.komaList[comBettingKoma].label
@@ -36,12 +36,12 @@
             </tr>
             <tr>
               <td v-for="n in 3" :key="n"></td>
-              <td id="field">
+              <td class="result">
                 <span v-if="gameResult">{{ gameResult }}</span>
                 <span v-else>{{ stageResult }}</span>
               </td>
               <td></td>
-              <td @click="battle" id="battle">
+              <td @click="battle" class="stage">
                 {{ this.$store.getters.stage }}
               </td>
               <td></td>
@@ -50,7 +50,7 @@
               <td></td>
               <td></td>
               <td></td>
-              <td id="player-bet">
+              <td class="player-bet">
                 {{
                   playerBettingKoma
                     ? this.$store.state.komaList[playerBettingKoma].label
@@ -195,7 +195,7 @@ h1 {
   text-align: center;
 }
 
-#wrapper {
+.wrapper {
   display: flex;
   justify-content: center;
 }
@@ -224,29 +224,27 @@ td {
   font-weight: bold;
   border: solid 2px black;
 }
-#field {
-  text-align: center;
+.result {
   font-size: 17px;
   font-weight: bold;
 }
 
-#battle {
+.stage {
   font-size: 18px;
   background: #e7b87a;
   cursor: pointer;
 }
-#battle:hover {
+.stage:hover {
   opacity: 0.7;
 }
 
-#player-bet,
-#com-bet {
-  text-align: center;
+.player-bet,
+.com-bet {
   font-weight: bold;
   background: #e7b87a;
 }
 
-#com-bet {
+.com-bet {
   transform: rotate(0.5turn);
   -webkit-transform: rotate(0.5turn);
 }

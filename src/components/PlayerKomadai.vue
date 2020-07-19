@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div id="player-point">{{ this.$store.state.playerPoint }}</div>
-    <table class="pkomadai">
+    <div class="player-point">{{ this.$store.state.playerPoint }}</div>
+    <table class="komadai">
       <tbody>
         <tr>
           <td>{{ showKomaLabel("fu") }}</td>
@@ -25,49 +25,30 @@ export default {
     showKomaLabel(komaIndex) {
       if (this.$store.state.playerKomadai.includes(komaIndex)) {
         return this.$store.state.komaList[komaIndex].label;
-      } else {
-        return "";
       }
-    },
-    reset() {
-      this.$store.commit("reset");
     },
   },
 };
 </script>
 
 <style scoped>
-#reset {
-  text-align: center;
-  width: 90px;
-  height: 36px;
-  border: solid 2px black;
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  line-height: 36px;
-  background-image: url("../assets/mokume.jpeg");
-  background-repeat: repeat;
-  cursor: pointer;
-}
-
-.pkomadai {
+.komadai {
   border: 2px solid black;
   border-collapse: collapse;
   background-image: url("../assets/mokume.jpeg");
   background-repeat: repeat;
 }
 
-.pkomadai td {
+td {
+  width: 42px;
+  height: 48px;
   text-align: center;
   font-size: 28px;
   font-weight: bold;
   border-width: 0px;
-  width: 42px;
-  height: 48px;
 }
 
-#player-point {
+.player-point {
   width: 50px;
   height: 50px;
   border: 2px black solid;

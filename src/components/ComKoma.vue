@@ -18,7 +18,7 @@ export default {
   methods: {
     comSelectable(komaIndex) {
       if (!this.$store.state.comHolding.includes(komaIndex)) {
-        return "nonActive";
+        return "non-active";
       }
     },
   },
@@ -30,7 +30,7 @@ td {
   transform: rotate(0.5turn);
   -webkit-transform: rotate(0.5turn);
 }
-.nonActive {
+.non-active {
   opacity: 0.4;
 }
 </style>

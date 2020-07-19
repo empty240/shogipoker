@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="ckomadai">
+    <table class="komadai">
       <tbody>
         <tr>
           <td>{{ showKomaLabel("kaku") }}</td>
@@ -14,7 +14,7 @@
         </tr>
       </tbody>
     </table>
-    <div id="com-point">{{ this.$store.state.comPoint }}</div>
+    <div class="com-point">{{ this.$store.state.comPoint }}</div>
   </div>
 </template>
 
@@ -25,8 +25,6 @@ export default {
     showKomaLabel(komaIndex) {
       if (this.$store.state.comKomadai.includes(komaIndex)) {
         return this.$store.state.komaList[komaIndex].label;
-      } else {
-        return "";
       }
     },
   },
@@ -34,7 +32,7 @@ export default {
 </script>
 
 <style scoped>
-.ckomadai {
+.komadai {
   border: 2px solid black;
   border-collapse: collapse;
   background-image: url("../assets/mokume.jpeg");
@@ -42,17 +40,17 @@ export default {
 }
 
 td {
+  width: 42px;
+  height: 48px;
   text-align: center;
   border-width: 0px;
   font-size: 28px;
   font-weight: bold;
   transform: rotate(0.5turn);
   -webkit-transform: rotate(0.5turn);
-  width: 42px;
-  height: 48px;
 }
 
-#com-point {
+.com-point {
   width: 50px;
   height: 50px;
   border: 2px black solid;

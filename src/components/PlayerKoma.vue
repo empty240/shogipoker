@@ -18,7 +18,7 @@ export default {
   methods: {
     playerSelectable() {
       if (!this.$store.state.playerHolding.includes(this.komaIndex)) {
-        return "nonActive";
+        return "non-active";
       }
     },
     select() {
@@ -32,10 +32,9 @@ export default {
 td {
   cursor: pointer;
 }
-td:hover {
-  opacity: 0.4;
-}
-.nonActive {
+
+td:hover,
+.non-active {
   opacity: 0.4;
 }
 </style>
