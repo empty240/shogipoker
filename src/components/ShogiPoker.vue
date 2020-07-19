@@ -76,7 +76,7 @@
       </div>
       <div class="player-komadai">
         <player-komadai></player-komadai>
-        <reset-btn @clickReset="resetShogiBan"></reset-btn>
+        <reset-btn @clickReset="resetShogiBan()"></reset-btn>
         <game-rule></game-rule>
       </div>
     </div>
@@ -124,7 +124,7 @@ export default {
     },
     battle() {
       // 異常系は弾く。早期リターン
-      if (!this.playerBettingKoma) {
+      if (!this.playerBettingKoma || this.gameResult) {
         return;
       }
 
