@@ -101,6 +101,7 @@ export default {
       comBettingKoma: null,
       gameResult: null,
       stageResult: null,
+      isBattleActive: true,
     };
   },
   methods: {
@@ -108,11 +109,12 @@ export default {
       if (this.$store.state.playerHolding.includes(index)) {
         this.playerBettingKoma = index;
         this.comBettingKoma = null;
+        this.isBattleActive = true;
       }
     },
     battle() {
       // 異常系は弾く。早期リターン
-      if (!this.playerBettingKoma || this.gameResult) {
+      if (!this.playerBettingKoma || !this.isBattleActive) {
         return;
       }
 
@@ -124,6 +126,9 @@ export default {
 
       // 対決
       this.match();
+
+      // 対決後は駒を選択するまで対決不可
+      this.isBattleActive = false;
 
       // 使用可能な駒の更新
       this.$store.commit("playerBet", this.playerBettingKoma);
