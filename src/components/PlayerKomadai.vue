@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div @click="reset()" id="reset">リセット</div>
     <div id="player-point">{{ this.$store.state.playerPoint }}</div>
     <table class="pkomadai">
       <tbody>

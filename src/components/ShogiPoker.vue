@@ -76,6 +76,7 @@
       </div>
       <div class="player-komadai">
         <player-komadai></player-komadai>
+        <reset-btn></reset-btn>
         <game-rule></game-rule>
       </div>
     </div>
@@ -86,6 +87,7 @@
 import ComKomadai from "./ComKomadai.vue";
 import PlayerKomadai from "./PlayerKomadai.vue";
 import GameRule from "./GameRule.vue";
+import ResetBtn from "./ResetBtn.vue";
 
 export default {
   name: "ShogiPoker",
@@ -93,6 +95,7 @@ export default {
     ComKomadai,
     PlayerKomadai,
     GameRule,
+    ResetBtn,
   },
   data() {
     return {
