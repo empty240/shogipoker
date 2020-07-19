@@ -1,5 +1,5 @@
 <template>
-  <td @click="select()" :class="playerSelectable()">{{ koma.label }}</td>
+  <td @click="select()" :class="getKomaClass()">{{ koma.label }}</td>
 </template>
 
 <script>
@@ -16,9 +16,9 @@ export default {
     },
   },
   methods: {
-    playerSelectable() {
-      if (!this.$store.state.playerHolding.includes(this.komaIndex)) {
-        return "non-active";
+    getKomaClass() {
+      if (!this.$store.state.playerSelectable.includes(this.komaIndex)) {
+        return "unselectable";
       }
     },
     select() {
@@ -34,7 +34,7 @@ td {
 }
 
 td:hover,
-.non-active {
+.unselectable {
   opacity: 0.4;
 }
 </style>

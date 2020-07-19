@@ -26,7 +26,6 @@ h2 {
 }
 li {
   margin: 5px 0;
-  font-weight: 500;
   font-size: 17px;
 }
 </style>

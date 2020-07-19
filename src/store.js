@@ -21,8 +21,8 @@ const store = new Vuex.Store({
     comPoint: 0,
     playerKomadai: [],
     comKomadai: [],
-    playerHolding: Object.assign([], komaIndexList),
-    comHolding: Object.assign([], komaIndexList),
+    playerSelectable: Object.assign([], komaIndexList),
+    comSelectable: Object.assign([], komaIndexList),
     phase: 1,
   },
   getters: {
@@ -31,13 +31,13 @@ const store = new Vuex.Store({
     },
   },
   mutations: {
-    playerBet(state, komaIndex) {
-      const index = state.playerHolding.indexOf(komaIndex);
-      state.playerHolding.splice(index, 1);
+    updatePlayerSelectable(state, komaIndex) {
+      const index = state.playerSelectable.indexOf(komaIndex);
+      state.playerSelectable.splice(index, 1);
     },
-    comBet(state, komaIndex) {
-      const index = state.comHolding.indexOf(komaIndex);
-      state.comHolding.splice(index, 1);
+    updateComSelectable(state, komaIndex) {
+      const index = state.comSelectable.indexOf(komaIndex);
+      state.comSelectable.splice(index, 1);
     },
     upPhase(state) {
       state.phase++;
@@ -59,8 +59,8 @@ const store = new Vuex.Store({
       state.comPoint = 0;
       state.playerKomadai = [];
       state.comKomadai = [];
-      state.playerHolding = Object.assign([], komaIndexList);
-      state.comHolding = Object.assign([], komaIndexList);
+      state.playerSelectable = Object.assign([], komaIndexList);
+      state.comSelectable = Object.assign([], komaIndexList);
       state.phase = 1;
     },
   },

@@ -23,10 +23,10 @@
               <td></td>
               <td></td>
               <td></td>
-              <td class="com-bet">
+              <td class="com-select">
                 {{
-                  comBettingKoma
-                    ? this.$store.state.komaList[comBettingKoma].label
+                  comSelectingKoma
+                    ? this.$store.state.komaList[comSelectingKoma].label
                     : ""
                 }}
               </td>
@@ -35,13 +35,15 @@
               <td></td>
             </tr>
             <tr>
-              <td v-for="n in 3" :key="n"></td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td class="result">
                 <span v-if="gameResult">{{ gameResult }}</span>
                 <span v-else>{{ stageResult }}</span>
               </td>
               <td></td>
-              <td @click="battle" class="stage">
+              <td @click="bet()" class="stage">
                 {{ this.$store.getters.stage }}
               </td>
               <td></td>
@@ -50,10 +52,10 @@
               <td></td>
               <td></td>
               <td></td>
-              <td class="player-bet">
+              <td class="player-select">
                 {{
-                  playerBettingKoma
-                    ? this.$store.state.komaList[playerBettingKoma].label
+                  playerSelectingKoma
+                    ? this.$store.state.komaList[playerSelectingKoma].label
                     : ""
                 }}
               </td>
@@ -70,7 +72,7 @@
                 :key="index"
                 :komaIndex="index"
                 :koma="koma"
-                @selectKoma="bet"
+                @selectKoma="select"
               ></player-koma>
             </tr>
           </tbody>
@@ -105,42 +107,44 @@ export default {
   },
   data() {
     return {
-      playerBettingKoma: null,
-      comBettingKoma: null,
+      playerSelectingKoma: null,
+      comSelectingKoma: null,
       gameResult: null,
       stageResult: null,
-      isBattleActive: true,
+      canBattle: false,
     };
   },
   methods: {
-    bet(index) {
-      if (this.$store.state.playerHolding.includes(index)) {
-        this.playerBettingKoma = index;
-        this.comBettingKoma = null;
-        this.isBattleActive = true;
+    // playerが駒を選択
+    select(komaIndex) {
+      if (this.$store.state.playerSelectable.includes(komaIndex)) {
+        this.playerSelectingKoma = komaIndex;
+        this.comSelectingKoma = null;
+        this.canBattle = true;
       }
     },
-    battle() {
-      // 異常系は弾く。早期リターン
-      if (!this.playerBettingKoma || !this.isBattleActive) {
+    // n手目をクリック
+    bet() {
+      // 対決可能でない時はreturn
+      if (!this.canBattle) {
         return;
       }
 
-      // comのbetをランダムに決める
-      let size = this.$store.state.comHolding.length;
-      this.comBettingKoma = this.$store.state.comHolding[
+      // comの駒をランダムに決める
+      let size = this.$store.state.comSelectable.length;
+      this.comSelectingKoma = this.$store.state.comSelectable[
         Math.floor(Math.random() * size)
       ];
 
       // 対決
-      this.match();
+      this.battle();
 
-      // 対決後は駒を選択するまで対決不可
-      this.isBattleActive = false;
+      // 対決後はplayerが駒を選択するまで対決不可
+      this.canBattle = false;
 
       // 使用可能な駒の更新
-      this.$store.commit("playerBet", this.playerBettingKoma);
-      this.$store.commit("comBet", this.comBettingKoma);
+      this.$store.commit("updatePlayerSelectable", this.playerSelectingKoma);
+      this.$store.commit("updateComSelectable", this.comSelectingKoma);
 
       // 局面の更新
       if (this.$store.state.phase < 7) {
@@ -149,26 +153,29 @@ export default {
         this.showGameResult();
       }
     },
-    match() {
-      const playerKomaPoint = this.$store.state.komaList[this.playerBettingKoma]
-        .point;
-      const comKomaPoint = this.$store.state.komaList[this.comBettingKoma]
+    // 対決
+    battle() {
+      const playerKomaPoint = this.$store.state.komaList[
+        this.playerSelectingKoma
+      ].point;
+      const comKomaPoint = this.$store.state.komaList[this.comSelectingKoma]
         .point;
 
       if (playerKomaPoint > comKomaPoint) {
         // playerの勝ちなので、comのコマポイントをplayerに加算
         this.$store.commit("addPlayerPoint", comKomaPoint);
-        this.$store.commit("addPlayerKoma", this.comBettingKoma);
+        this.$store.commit("addPlayerKoma", this.comSelectingKoma);
         this.stageResult = "WIN";
       } else if (playerKomaPoint < comKomaPoint) {
         // comの勝ちなので、playerのコマポイントをcomに加算
         this.$store.commit("addComPoint", playerKomaPoint);
-        this.$store.commit("addComKoma", this.playerBettingKoma);
+        this.$store.commit("addComKoma", this.playerSelectingKoma);
         this.stageResult = "LOSE";
       } else {
         this.stageResult = "DRAW";
       }
     },
+    // ゲーム結果の表示
     showGameResult() {
       if (this.$store.state.playerPoint > this.$store.state.comPoint) {
         this.gameResult = "勝ち";
@@ -178,11 +185,13 @@ export default {
         this.gameResult = "引き分け";
       }
     },
+    // リセットする
     resetShogiBan() {
-      this.playerBettingKoma = null;
-      this.comBettingKoma = null;
+      this.playerSelectingKoma = null;
+      this.comSelectingKoma = null;
       this.gameResult = null;
       this.stageResult = null;
+      this.canBattle = false;
     },
   },
 };
@@ -238,13 +247,13 @@ td {
   opacity: 0.7;
 }
 
-.player-bet,
-.com-bet {
+.player-select,
+.com-select {
   font-weight: bold;
   background: #e7b87a;
 }
 
-.com-bet {
+.com-select {
   transform: rotate(0.5turn);
   -webkit-transform: rotate(0.5turn);
 }

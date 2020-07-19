@@ -1,5 +1,5 @@
 <template>
-  <td :class="comSelectable(komaIndex)">{{ koma.label }}</td>
+  <td :class="getKomaClass()">{{ koma.label }}</td>
 </template>
 
 <script>
@@ -16,9 +16,9 @@ export default {
     },
   },
   methods: {
-    comSelectable(komaIndex) {
-      if (!this.$store.state.comHolding.includes(komaIndex)) {
-        return "non-active";
+    getKomaClass() {
+      if (!this.$store.state.comSelectable.includes(this.komaIndex)) {
+        return "unselectable";
       }
     },
   },
@@ -30,7 +30,7 @@ td {
   transform: rotate(0.5turn);
   -webkit-transform: rotate(0.5turn);
 }
-.non-active {
+.unselectable {
   opacity: 0.4;
 }
 </style>
