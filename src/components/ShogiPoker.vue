@@ -9,15 +9,12 @@
         <table>
           <tbody>
             <tr class="com-koma">
-              <td
+              <com-koma
                 v-for="(koma, index) in this.$store.state.komaList"
                 :key="index"
-                :id="'com' + koma.point"
-                class="c-koma"
-                :class="comSelectable(index)"
-              >
-                {{ koma.label }}
-              </td>
+                :komaIndex="index"
+                :koma="koma"
+              ></com-koma>
             </tr>
             <tr>
               <td v-for="n in 7" :key="n"></td>
@@ -60,16 +57,13 @@
               <td v-for="n in 7" :key="n"></td>
             </tr>
             <tr>
-              <td
+              <player-koma
                 v-for="(koma, index) in this.$store.state.komaList"
                 :key="index"
-                :id="'p' + koma.point"
-                class="p-koma"
-                :class="playerSelectable(index)"
-                @click="bet(index)"
-              >
-                {{ koma.label }}
-              </td>
+                :komaIndex="index"
+                :koma="koma"
+                @selectKoma="bet"
+              ></player-koma>
             </tr>
           </tbody>
         </table>
@@ -88,6 +82,8 @@ import ComKomadai from "./ComKomadai.vue";
 import PlayerKomadai from "./PlayerKomadai.vue";
 import GameRule from "./GameRule.vue";
 import ResetBtn from "./ResetBtn.vue";
+import ComKoma from "./ComKoma.vue";
+import PlayerKoma from "./PlayerKoma.vue";
 
 export default {
   name: "ShogiPoker",
@@ -96,6 +92,8 @@ export default {
     PlayerKomadai,
     GameRule,
     ResetBtn,
+    ComKoma,
+    PlayerKoma,
   },
   data() {
     return {
@@ -106,16 +104,6 @@ export default {
     };
   },
   methods: {
-    comSelectable(index) {
-      if (!this.$store.state.comHolding.includes(index)) {
-        return "nonActive";
-      }
-    },
-    playerSelectable(index) {
-      if (!this.$store.state.playerHolding.includes(index)) {
-        return "nonActive";
-      }
-    },
     bet(index) {
       if (this.$store.state.playerHolding.includes(index)) {
         this.playerBettingKoma = index;
@@ -256,20 +244,5 @@ td {
   font-size: 35px;
   font-weight: bold;
   background: #e7b87a;
-}
-.com-koma {
-  transform: rotate(0.5turn);
-  -webkit-transform: rotate(0.5turn);
-}
-.p-koma {
-  cursor: pointer;
-}
-
-.p-koma:hover {
-  opacity: 0.4;
-}
-
-.nonActive {
-  opacity: 0.4;
 }
 </style>
