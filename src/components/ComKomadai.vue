@@ -1,20 +1,20 @@
 <template>
   <div>
-    <table class="ckomadai">
+    <table class="komadai">
       <tbody>
         <tr>
-          <td id="ck9">{{ showKomaLabel("kaku") }}</td>
-          <td id="ck7">{{ showKomaLabel("kin") }}</td>
-          <td id="ck6">{{ showKomaLabel("gin") }}</td>
+          <td>{{ showKomaLabel("kaku") }}</td>
+          <td>{{ showKomaLabel("kin") }}</td>
+          <td>{{ showKomaLabel("gin") }}</td>
         </tr>
         <tr>
-          <td id="ck4">{{ showKomaLabel("keima") }}</td>
-          <td id="ck3">{{ showKomaLabel("kyosha") }}</td>
-          <td id="ck1">{{ showKomaLabel("fu") }}</td>
+          <td>{{ showKomaLabel("keima") }}</td>
+          <td>{{ showKomaLabel("kyosha") }}</td>
+          <td>{{ showKomaLabel("fu") }}</td>
         </tr>
       </tbody>
     </table>
-    <div id="com-point">{{ this.$store.state.comPoint }}</div>
+    <div class="com-point">{{ this.$store.state.comPoint }}</div>
   </div>
 </template>
 
@@ -25,8 +25,6 @@ export default {
     showKomaLabel(komaIndex) {
       if (this.$store.state.comKomadai.includes(komaIndex)) {
         return this.$store.state.komaList[komaIndex].label;
-      } else {
-        return "";
       }
     },
   },
@@ -34,36 +32,31 @@ export default {
 </script>
 
 <style scoped>
-.ckomadai {
+.komadai {
   border: 2px solid black;
   border-collapse: collapse;
   background-image: url("../assets/mokume.jpeg");
   background-repeat: repeat;
 }
 
-#ck1,
-#ck3,
-#ck4,
-#ck6,
-#ck7,
-#ck9 {
+td {
+  width: 42px;
+  height: 48px;
   text-align: center;
   border-width: 0px;
   font-size: 28px;
   font-weight: bold;
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  width: 42px;
-  height: 48px;
+  transform: rotate(0.5turn);
+  -webkit-transform: rotate(0.5turn);
 }
 
-#com-point {
+.com-point {
   width: 50px;
   height: 50px;
   border: 2px black solid;
   text-align: center;
   line-height: 50px;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
   background: #e7b87a;
   float: right;

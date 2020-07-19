@@ -3,6 +3,8 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const komaIndexList = ["fu", "kyosha", "keima", "gin", "kin", "kaku", "hisha"];
+
 // Storeを生成
 const store = new Vuex.Store({
   state: {
@@ -19,8 +21,8 @@ const store = new Vuex.Store({
     comPoint: 0,
     playerKomadai: [],
     comKomadai: [],
-    playerHolding: ["fu", "kyosha", "keima", "gin", "kin", "kaku", "hisha"],
-    comHolding: ["fu", "kyosha", "keima", "gin", "kin", "kaku", "hisha"],
+    playerSelectable: Object.assign([], komaIndexList),
+    comSelectable: Object.assign([], komaIndexList),
     phase: 1,
   },
   getters: {
@@ -29,13 +31,13 @@ const store = new Vuex.Store({
     },
   },
   mutations: {
-    playerBet(state, komaIndex) {
-      const index = state.playerHolding.indexOf(komaIndex);
-      state.playerHolding.splice(index, 1);
+    updatePlayerSelectable(state, komaIndex) {
+      const index = state.playerSelectable.indexOf(komaIndex);
+      state.playerSelectable.splice(index, 1);
     },
-    comBet(state, komaIndex) {
-      const index = state.comHolding.indexOf(komaIndex);
-      state.comHolding.splice(index, 1);
+    updateComSelectable(state, komaIndex) {
+      const index = state.comSelectable.indexOf(komaIndex);
+      state.comSelectable.splice(index, 1);
     },
     upPhase(state) {
       state.phase++;
@@ -51,6 +53,15 @@ const store = new Vuex.Store({
     },
     addComKoma(state, komaIndex) {
       state.comKomadai.push(komaIndex);
+    },
+    reset(state) {
+      state.playerPoint = 0;
+      state.comPoint = 0;
+      state.playerKomadai = [];
+      state.comKomadai = [];
+      state.playerSelectable = Object.assign([], komaIndexList);
+      state.comSelectable = Object.assign([], komaIndexList);
+      state.phase = 1;
     },
   },
 });

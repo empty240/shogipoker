@@ -1,0 +1,36 @@
+<template>
+  <td :class="getKomaClass()">{{ koma.label }}</td>
+</template>
+
+<script>
+export default {
+  name: "ComKoma",
+  props: {
+    komaIndex: {
+      type: String,
+      required: true,
+    },
+    koma: {
+      type: Object,
+      required: true,
+    },
+  },
+  methods: {
+    getKomaClass() {
+      if (!this.$store.state.comSelectable.includes(this.komaIndex)) {
+        return "unselectable";
+      }
+    },
+  },
+};
+</script>
+
+<style scoped>
+td {
+  transform: rotate(0.5turn);
+  -webkit-transform: rotate(0.5turn);
+}
+.unselectable {
+  opacity: 0.4;
+}
+</style>
