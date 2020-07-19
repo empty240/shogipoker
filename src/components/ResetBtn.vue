@@ -8,6 +8,7 @@ export default {
   methods: {
     reset() {
       this.$store.commit("reset");
+      this.$emit("clickReset");
     },
   },
 };

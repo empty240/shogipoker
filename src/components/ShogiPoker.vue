@@ -76,7 +76,7 @@
       </div>
       <div class="player-komadai">
         <player-komadai></player-komadai>
-        <reset-btn></reset-btn>
+        <reset-btn @clickReset="resetShogiBan"></reset-btn>
         <game-rule></game-rule>
       </div>
     </div>
@@ -176,6 +176,12 @@ export default {
       } else {
         this.gameResult = "引き分け";
       }
+    },
+    resetShogiBan() {
+      this.playerBettingKoma = null;
+      this.comBettingKoma = null;
+      this.gameResult = null;
+      this.stageResult = null;
     },
   },
 };
