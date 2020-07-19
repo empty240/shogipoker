@@ -3,14 +3,14 @@
     <table class="ckomadai">
       <tbody>
         <tr>
-          <td id="ck9">{{ showKomaLabel("kaku") }}</td>
-          <td id="ck7">{{ showKomaLabel("kin") }}</td>
-          <td id="ck6">{{ showKomaLabel("gin") }}</td>
+          <td>{{ showKomaLabel("kaku") }}</td>
+          <td>{{ showKomaLabel("kin") }}</td>
+          <td>{{ showKomaLabel("gin") }}</td>
         </tr>
         <tr>
-          <td id="ck4">{{ showKomaLabel("keima") }}</td>
-          <td id="ck3">{{ showKomaLabel("kyosha") }}</td>
-          <td id="ck1">{{ showKomaLabel("fu") }}</td>
+          <td>{{ showKomaLabel("keima") }}</td>
+          <td>{{ showKomaLabel("kyosha") }}</td>
+          <td>{{ showKomaLabel("fu") }}</td>
         </tr>
       </tbody>
     </table>
@@ -41,18 +41,13 @@ export default {
   background-repeat: repeat;
 }
 
-#ck1,
-#ck3,
-#ck4,
-#ck6,
-#ck7,
-#ck9 {
+td {
   text-align: center;
   border-width: 0px;
   font-size: 28px;
   font-weight: bold;
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
+  transform: rotate(0.5turn);
+  -webkit-transform: rotate(0.5turn);
   width: 42px;
   height: 48px;
 }

@@ -4,14 +4,14 @@
     <table class="pkomadai">
       <tbody>
         <tr>
-          <td id="pk1">{{ showKomaLabel("fu") }}</td>
-          <td id="pk3">{{ showKomaLabel("kyosha") }}</td>
-          <td id="pk4">{{ showKomaLabel("keima") }}</td>
+          <td>{{ showKomaLabel("fu") }}</td>
+          <td>{{ showKomaLabel("kyosha") }}</td>
+          <td>{{ showKomaLabel("keima") }}</td>
         </tr>
         <tr>
-          <td id="pk6">{{ showKomaLabel("gin") }}</td>
-          <td id="pk7">{{ showKomaLabel("kin") }}</td>
-          <td id="pk9">{{ showKomaLabel("kaku") }}</td>
+          <td>{{ showKomaLabel("gin") }}</td>
+          <td>{{ showKomaLabel("kin") }}</td>
+          <td>{{ showKomaLabel("kaku") }}</td>
         </tr>
       </tbody>
     </table>

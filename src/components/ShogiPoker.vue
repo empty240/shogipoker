@@ -247,7 +247,7 @@ td {
 }
 
 #com-bet {
-  -ms-transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
+  transform: rotate(0.5turn);
+  -webkit-transform: rotate(0.5turn);
 }
 </style>
