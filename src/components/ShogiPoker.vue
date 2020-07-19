@@ -231,23 +231,15 @@ td {
   opacity: 0.7;
 }
 
+#player-bet,
 #com-bet {
   text-align: center;
-  -ms-transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  width: 60px;
-  height: 60px;
-  font-size: 35px;
   font-weight: bold;
   background: #e7b87a;
 }
 
-#player-bet {
-  text-align: center;
-  width: 60px;
-  height: 60px;
-  font-size: 35px;
-  font-weight: bold;
-  background: #e7b87a;
+#com-bet {
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
 }
 </style>
