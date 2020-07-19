@@ -8,7 +8,7 @@
       <div class="shogi-ban">
         <table>
           <tbody>
-            <tr class="com-koma">
+            <tr>
               <com-koma
                 v-for="(koma, index) in this.$store.state.komaList"
                 :key="index"
@@ -20,15 +20,19 @@
               <td v-for="n in 7" :key="n"></td>
             </tr>
             <tr>
-              <td v-for="n in 3" :key="n"></td>
-              <td id="com-bet" class="com-koma">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td id="com-bet">
                 {{
                   comBettingKoma
                     ? this.$store.state.komaList[comBettingKoma].label
                     : ""
                 }}
               </td>
-              <td v-for="n in 3" :key="n + 'a'"></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
             <tr>
               <td v-for="n in 3" :key="n"></td>
@@ -43,7 +47,9 @@
               <td></td>
             </tr>
             <tr>
-              <td v-for="n in 3" :key="n"></td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td id="player-bet">
                 {{
                   playerBettingKoma
@@ -51,7 +57,9 @@
                     : ""
                 }}
               </td>
-              <td v-for="n in 3" :key="n + 'a'"></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
             <tr>
               <td v-for="n in 7" :key="n"></td>
