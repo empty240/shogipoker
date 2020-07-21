@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>将棋ポーカー</h1>
+    <h1 style="color: #353590">将棋ポーカー</h1>
     <div class="wrapper">
       <div class="com-komadai">
         <com-komadai></com-komadai>
