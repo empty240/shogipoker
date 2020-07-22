@@ -25,11 +25,6 @@ const store = new Vuex.Store({
     comSelectable: Object.assign([], komaIndexList),
     phase: 1,
   },
-  getters: {
-    stage(state) {
-      return state.phase === 1 ? "初手" : state.phase + "手目";
-    },
-  },
   mutations: {
     updatePlayerSelectable(state, komaIndex) {
       const index = state.playerSelectable.indexOf(komaIndex);
