@@ -42,7 +42,7 @@
               </td>
               <td></td>
               <td @click="bet()" class="stage">
-                {{ this.$store.getters.stage }}
+                {{ phase === 1 ? "初手" : phase + "手目" }}
               </td>
               <td></td>
             </tr>
