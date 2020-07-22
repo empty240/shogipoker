@@ -53,11 +53,11 @@ td {
 .player-point {
   width: 50px;
   height: 50px;
-  border: 2px black solid;
   text-align: center;
   line-height: 50px;
   font-size: 22px;
   font-weight: bold;
+  border: 2px black solid;
   background: #e7b87a;
   margin-bottom: 10px;
 }

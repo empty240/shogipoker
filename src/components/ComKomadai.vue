@@ -45,9 +45,9 @@ td {
   width: 42px;
   height: 48px;
   text-align: center;
-  border-width: 0px;
   font-size: 28px;
   font-weight: bold;
+  border-width: 0px;
   transform: rotate(0.5turn);
   -webkit-transform: rotate(0.5turn);
 }
@@ -55,11 +55,11 @@ td {
 .com-point {
   width: 50px;
   height: 50px;
-  border: 2px black solid;
   text-align: center;
   line-height: 50px;
   font-size: 22px;
   font-weight: bold;
+  border: 2px black solid;
   background: #e7b87a;
   float: right;
   margin-top: 10px;

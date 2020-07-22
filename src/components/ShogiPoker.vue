@@ -203,9 +203,9 @@ export default {
 
 <style scoped>
 h1 {
+  text-align: center;
   margin: 0;
   padding: 20px 0;
-  text-align: center;
 }
 
 .wrapper {
@@ -230,9 +230,9 @@ table {
 }
 
 td {
-  text-align: center;
   width: 60px;
   height: 60px;
+  text-align: center;
   font-size: 35px;
   font-weight: bold;
   border: solid 2px black;
