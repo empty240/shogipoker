@@ -10,7 +10,7 @@
           <tbody>
             <tr>
               <com-koma
-                v-for="(koma, index) in this.$store.state.komaList"
+                v-for="(koma, index) in this.komaList"
                 :key="index"
                 :komaIndex="index"
                 :koma="koma"
@@ -25,9 +25,7 @@
               <td></td>
               <td class="com-select">
                 {{
-                  comSelectingKoma
-                    ? this.$store.state.komaList[comSelectingKoma].label
-                    : ""
+                  comSelectingKoma ? this.komaList[comSelectingKoma].label : ""
                 }}
               </td>
               <td></td>
@@ -55,7 +53,7 @@
               <td class="player-select">
                 {{
                   playerSelectingKoma
-                    ? this.$store.state.komaList[playerSelectingKoma].label
+                    ? this.komaList[playerSelectingKoma].label
                     : ""
                 }}
               </td>
@@ -68,7 +66,7 @@
             </tr>
             <tr>
               <player-koma
-                v-for="(koma, index) in this.$store.state.komaList"
+                v-for="(koma, index) in this.komaList"
                 :key="index"
                 :komaIndex="index"
                 :koma="koma"
@@ -88,6 +86,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import ComKomadai from "./ComKomadai.vue";
 import PlayerKomadai from "./PlayerKomadai.vue";
 import GameRule from "./GameRule.vue";
@@ -114,10 +113,18 @@ export default {
       canBattle: false,
     };
   },
+  computed: mapState([
+    "komaList",
+    "phase",
+    "playerSelectable",
+    "comSelectable",
+    "playerPoint",
+    "comPoint",
+  ]),
   methods: {
     // playerが駒を選択
     select(komaIndex) {
-      if (this.$store.state.playerSelectable.includes(komaIndex)) {
+      if (this.playerSelectable.includes(komaIndex)) {
         this.playerSelectingKoma = komaIndex;
         this.comSelectingKoma = null;
         this.canBattle = true;
@@ -131,8 +138,8 @@ export default {
       }
 
       // comの駒をランダムに決める
-      let size = this.$store.state.comSelectable.length;
-      this.comSelectingKoma = this.$store.state.comSelectable[
+      let size = this.comSelectable.length;
+      this.comSelectingKoma = this.comSelectable[
         Math.floor(Math.random() * size)
       ];
 
@@ -147,7 +154,7 @@ export default {
       this.$store.commit("updateComSelectable", this.comSelectingKoma);
 
       // 局面の更新
-      if (this.$store.state.phase < 7) {
+      if (this.phase < 7) {
         this.$store.commit("upPhase");
       } else {
         this.showGameResult();
@@ -155,11 +162,8 @@ export default {
     },
     // 対決
     battle() {
-      const playerKomaPoint = this.$store.state.komaList[
-        this.playerSelectingKoma
-      ].point;
-      const comKomaPoint = this.$store.state.komaList[this.comSelectingKoma]
-        .point;
+      const playerKomaPoint = this.komaList[this.playerSelectingKoma].point;
+      const comKomaPoint = this.komaList[this.comSelectingKoma].point;
 
       if (playerKomaPoint > comKomaPoint) {
         // playerの勝ちなので、comのコマポイントをplayerに加算
@@ -177,9 +181,9 @@ export default {
     },
     // ゲーム結果の表示
     showGameResult() {
-      if (this.$store.state.playerPoint > this.$store.state.comPoint) {
+      if (this.playerPoint > this.comPoint) {
         this.gameResult = "勝ち";
-      } else if (this.$store.state.playerPoint < this.$store.state.comPoint) {
+      } else if (this.playerPoint < this.comPoint) {
         this.gameResult = "負け";
       } else {
         this.gameResult = "引き分け";

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="player-point">{{ this.$store.state.playerPoint }}</div>
+    <div class="player-point">{{ this.playerPoint }}</div>
     <table class="komadai">
       <tbody>
         <tr>
@@ -19,12 +19,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "PlayerKomadai",
+  computed: mapState(["komaList", "playerKomadai", "playerPoint"]),
   methods: {
     showKomaLabel(komaIndex) {
-      if (this.$store.state.playerKomadai.includes(komaIndex)) {
-        return this.$store.state.komaList[komaIndex].label;
+      if (this.playerKomadai.includes(komaIndex)) {
+        return this.komaList[komaIndex].label;
       }
     },
   },

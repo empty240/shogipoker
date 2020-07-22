@@ -14,17 +14,19 @@
         </tr>
       </tbody>
     </table>
-    <div class="com-point">{{ this.$store.state.comPoint }}</div>
+    <div class="com-point">{{ comPoint }}</div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "ComKomadai",
+  computed: mapState(["komaList", "comKomadai", "comPoint"]),
   methods: {
     showKomaLabel(komaIndex) {
-      if (this.$store.state.comKomadai.includes(komaIndex)) {
-        return this.$store.state.komaList[komaIndex].label;
+      if (this.comKomadai.includes(komaIndex)) {
+        return this.komaList[komaIndex].label;
       }
     },
   },

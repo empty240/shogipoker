@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "ComKoma",
   props: {
@@ -15,9 +16,10 @@ export default {
       required: true,
     },
   },
+  computed: mapState(["comSelectable"]),
   methods: {
     getKomaClass() {
-      if (!this.$store.state.comSelectable.includes(this.komaIndex)) {
+      if (!this.comSelectable.includes(this.komaIndex)) {
         return "unselectable";
       }
     },
