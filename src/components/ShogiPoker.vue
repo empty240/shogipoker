@@ -213,7 +213,7 @@ h1 {
   justify-content: center;
 }
 
-.shogi-ban {
+.shogi-ban table {
   margin: 0 15px;
   background-image: url("../assets/mokume.jpeg");
   background-repeat: repeat;
