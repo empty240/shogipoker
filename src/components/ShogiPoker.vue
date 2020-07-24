@@ -211,6 +211,7 @@ h1 {
 .wrapper {
   display: flex;
   justify-content: center;
+  min-width: 800px;
 }
 
 .shogi-ban table {
