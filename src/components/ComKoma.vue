@@ -3,28 +3,28 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from "vuex"
 export default {
   name: "ComKoma",
   props: {
     komaIndex: {
       type: String,
-      required: true,
+      required: true
     },
     koma: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   computed: mapState(["comSelectable"]),
   methods: {
     getKomaClass() {
       if (!this.comSelectable.includes(this.komaIndex)) {
-        return "unselectable";
+        return "unselectable"
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>

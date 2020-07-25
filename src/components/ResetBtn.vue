@@ -7,11 +7,11 @@ export default {
   name: "ResetBtn",
   methods: {
     reset() {
-      this.$store.commit("reset");
-      this.$emit("clickReset");
-    },
-  },
-};
+      this.$store.commit("reset")
+      this.$emit("clickReset")
+    }
+  }
+}
 </script>
 
 <style scoped>
