@@ -3,31 +3,31 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from "vuex"
 export default {
   name: "PlayerKoma",
   props: {
     komaIndex: {
       type: String,
-      required: true,
+      required: true
     },
     koma: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   computed: mapState(["playerSelectable"]),
   methods: {
     getKomaClass() {
       if (!this.playerSelectable.includes(this.komaIndex)) {
-        return "unselectable";
+        return "unselectable"
       }
     },
     select() {
-      this.$emit("selectKoma", this.komaIndex);
-    },
-  },
-};
+      this.$emit("selectKoma", this.komaIndex)
+    }
+  }
+}
 </script>
 
 <style scoped>

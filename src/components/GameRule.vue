@@ -12,8 +12,8 @@
 
 <script>
 export default {
-  name: "GameRule",
-};
+  name: "GameRule"
+}
 </script>
 
 <style scoped>

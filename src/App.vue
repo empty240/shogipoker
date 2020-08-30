@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import ShogiPoker from "./components/ShogiPoker.vue";
+import ShogiPoker from "./components/ShogiPoker.vue"
 
 export default {
   name: "App",
   components: {
-    ShogiPoker,
-  },
-};
+    ShogiPoker
+  }
+}
 </script>
 
 <style scoped>
@@ -20,5 +20,6 @@ export default {
   height: 100%;
   background-image: url("./assets/tatami.jpg");
   background-repeat: repeat;
+  overflow: auto;
 }
 </style>

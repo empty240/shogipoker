@@ -19,18 +19,18 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from "vuex"
 export default {
   name: "ComKomadai",
   computed: mapState(["komaList", "comKomadai", "comPoint"]),
   methods: {
     showKomaLabel(komaIndex) {
       if (this.comKomadai.includes(komaIndex)) {
-        return this.komaList[komaIndex].label;
+        return this.komaList[komaIndex].label
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>
