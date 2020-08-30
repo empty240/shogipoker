@@ -8,7 +8,7 @@
       <div class="shogi-ban">
         <table>
           <tbody>
-            <tr>
+            <tr class="com-row">
               <com-koma
                 v-for="(koma, index) in this.komaList"
                 :key="index"
@@ -39,7 +39,7 @@
                 <span v-else>{{ stageResult }}</span>
               </td>
               <td></td>
-              <td @click="bet()" class="stage">
+              <td @click="bet()" class="phase">
                 {{ phase === 1 ? "初手" : phase + "手目" }}
               </td>
               <td></td>
@@ -58,7 +58,7 @@
             <tr>
               <td v-for="n in 7" :key="n"></td>
             </tr>
-            <tr>
+            <tr class="player-row">
               <player-koma
                 v-for="(koma, index) in this.komaList"
                 :key="index"
@@ -235,12 +235,12 @@ td {
   font-weight: bold;
 }
 
-.stage {
+.phase {
   font-size: 18px;
   background: #e7b87a;
   cursor: pointer;
 }
-.stage:hover {
+.phase:hover {
   opacity: 0.7;
 }
 
