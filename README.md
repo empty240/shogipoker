@@ -1,7 +1,6 @@
 # 将棋ポーカー
 
 将棋の駒をポーカーの役に見立てた非常にシンプルなゲームです。
-
 https://shogipoker.net
 
 ## Project setup
